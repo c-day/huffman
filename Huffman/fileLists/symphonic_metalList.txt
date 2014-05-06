@@ -1,0 +1,1 @@
+metal\Symphonic\moonspell.txt metal\Symphonic\nightwish.txt metal\Symphonic\opeth.txt metal\Symphonic\xandria.txt metal\Symphonic\alastis.txt metal\Symphonic\celtic+frost.txt metal\Symphonic\elegy.txt metal\Symphonic\fairyland.txt metal\Symphonic\gaia+epicus.txt metal\Symphonic\lacuna+coil.txt

@@ -1,0 +1,1 @@
+country\pop\shania+twain.txt country\pop\taylor+swift.txt country\pop\vince+gill.txt country\pop\dolly+parton.txt country\pop\donna+fargo.txt country\pop\jessie+james.txt country\pop\nancy+sinatra.txt country\pop\nitty+gritty+dirt+band.txt
