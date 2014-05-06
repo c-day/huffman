@@ -295,8 +295,9 @@ public class Huffman {
 	public int huffCount(String fileName) throws Exception {
 		//to get bits from Huffman we can read the file and use the dictionary to look up the length of each word encoded
 		File file = new File("lyricdata\\" + fileName);
+		System.out.println("file:::: : :: " + fileName);
 		Scanner sc = new Scanner(file);
-		String word = sc.next();
+		String word = "";
 		int count = 0;
 		
 		while (sc.hasNext()) {

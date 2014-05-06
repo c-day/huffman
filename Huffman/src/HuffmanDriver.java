@@ -3,7 +3,7 @@ public class HuffmanDriver {
 
 	public static void main(String[] args) throws Exception {
 		
-		Huffman metalTest = new Huffman("fileLists/metalList.txt", 0, 100);
+		Huffman metalTest = new Huffman("fileLists/allFilesList.txt", 0, 100);
 		metalTest.makeGraph();
 		/*Huffman Newtest0 = new Huffman("listOfFiles.txt", 601, 602);
 		Huffman Newtest1 = new Huffman("listOfFiles.txt", 600, 602);
