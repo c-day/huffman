@@ -2,7 +2,10 @@
 public class HuffmanDriver {
 
 	public static void main(String[] args) throws Exception {
-		Huffman Newtest0 = new Huffman("listOfFiles.txt", 601, 602);
+		
+		Huffman metalTest = new Huffman("fileLists/metalList.txt", 0, 100);
+		metalTest.makeGraph();
+		/*Huffman Newtest0 = new Huffman("listOfFiles.txt", 601, 602);
 		Huffman Newtest1 = new Huffman("listOfFiles.txt", 600, 602);
 		Huffman Newtest2 = new Huffman("listOfFiles.txt", 592, 602);
 		Huffman Newtest3 = new Huffman("listOfFiles.txt", 502, 602);
@@ -23,8 +26,8 @@ public class HuffmanDriver {
 		Oldtest3.makeGraph();
 		Oldtest4.makeGraph();
 		
-		Huffman all = new Huffman("listOfFiles.txt", 0, 602);
-		all.makeGraph();
+		Huffman all = new Huffman("listOfFiles.txt", 0, 602);*/
+		//all.makeGraph();
 	}
 
 }

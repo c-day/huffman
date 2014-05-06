@@ -7,6 +7,7 @@ import java.util.Hashtable;
 import java.util.Map.Entry;
 import java.util.PriorityQueue;
 import java.util.Scanner;
+import java.lang.*;
 
 import javax.swing.JPanel;
 
@@ -15,7 +16,18 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.*;
 import org.jfree.ui.*;
 
+
+
 public class Huffman {
+	
+	public static final int BLUEGRASS = 0;
+	public static final int BLUES = 1;
+	public static final int POP = 2;
+	public static final int ROCK = 3;
+	public static final int HAIR = 4;
+	public static final int SPEED = 5;
+	public static final int SYMPHONIC = 6;
+	public static final int POWER = 7;
 	
 	//instance variables
 	String fileList;
@@ -23,6 +35,14 @@ public class Huffman {
 	int end;
 	Hashtable<String, Integer> dictionary;
 	Hashtable<String, String>  encodedHash;
+	
+	public enum genre {
+		METAL, COUNTRY
+	};
+	
+	public enum subgenre {
+		BLUEGRASS, BLUES, HAIR, POP, POWER, ROCK, SPEED, SYMPHONIC
+	};
 	
 	
 	//Constructor
@@ -47,7 +67,7 @@ public class Huffman {
 	    File file = new File(fileList);
 	    Scanner sc = new Scanner(file);
 	    int count = 0;
-	    String fileName = "speechdata\\" + sc.next();
+	    String fileName = "lyricdata\\" + sc.next();
 	    
 	    //iterate through the list of files to make and combine dictionaries 
 	    System.out.println("\nCreating a dictionary that contains all of the words used and their frequencies...\n");
@@ -62,7 +82,12 @@ public class Huffman {
 	    	//use the file given to update global hash
 	    	updateHash(fileName);
 	    	System.out.println("Added file: " + fileName);
-	    	fileName = "speechdata\\" + sc.next();
+	    	if(sc.hasNext()) {
+	    		fileName = "lyricdata\\" + sc.next();
+	    	} else {
+	    		end = count;
+	    		break;
+	    	}
 	    	count++;
 	    }
 	    sc.close();
@@ -82,7 +107,7 @@ public class Huffman {
 		/*use the dictionary created to compress all of the files in the fileList
 		we compare the compression of Huffman code to that of block compression to get a compression ratio
 		we use these ratios and dates to make a graph*/
-		int year = 0;
+		int genre = 0;
 		int huff = 0;
 		int bloc = blocCount();
 		float ratio = 0;
@@ -97,20 +122,37 @@ public class Huffman {
 			ratio = (float) huff/bloc;
 			
 			//remove all but the first 4 chars of the file name (the year)
-			fileName = fileName.substring(0, 4);
-			year = Integer.parseInt(fileName);
+			//fileName = fileName.substring(0, 4);
+			//year = Integer.parseInt(fileName);
+			if(fileName.toLowerCase().contains("pop")) {
+				genre = POP;
+			} else if(fileName.toLowerCase().contains("bluegrass")) {
+				genre = BLUEGRASS;
+			} else if(fileName.toLowerCase().contains("blues")) {
+				genre = BLUES;
+			} else if(fileName.toLowerCase().contains("hair")) {
+				genre = HAIR;
+			} else if(fileName.toLowerCase().contains("power")) {
+				genre = POWER;
+			} else if(fileName.toLowerCase().contains("rock")) {
+				genre = ROCK;
+			} else if(fileName.toLowerCase().contains("speed")) {
+				genre = SPEED;
+			} else if(fileName.toLowerCase().contains("symphonic")) {
+				genre = SYMPHONIC;
+			}
 			
 			//add data to graph
-			data.getSeries(0).add(year, ratio);
-			System.out.println("Added data series: Year:" + year + " Ratio:" + ratio);
+			data.getSeries(0).add(genre, ratio);
+			System.out.println("Added data series: KKGenre?:" + genre + " Ratio:" + ratio);
 		}
 		sc.close();
 
 		//create scatter plot
-		String chartName = new String("Huffman Ratio using speeches " + start + " to " + end);
+		String chartName = new String("Huffman Ratio using lyrics " + start + " to " + end);
 		JFreeChart chart = ChartFactory.createScatterPlot(
 		chartName, 					// chart title
-		"Year", 					// domain axis label
+		"Genre", 					// domain axis label
 		"Compression Ratio (Huffman/Bloc)", 		// range axis label
 		data, // data
 		PlotOrientation.VERTICAL,	// orientation
@@ -159,12 +201,12 @@ public class Huffman {
 		//try to open and setup to read file  
 	    File files = new File(fileList);
 	    Scanner sc = new Scanner(files);
-	    String fileName = "speechdata\\" + sc.next();
+	    String fileName = "lyricdata\\" + sc.next();
 	    String word = "";
 	    
 	    //read all of the files
 	    while ( sc.hasNext() ) {
-	    	fileName = "speechdata\\" + sc.next();
+	    	fileName = "lyricdata\\" + sc.next();
 	    	
 	    	//get current file
 	    	File file = new File(fileName);
@@ -252,14 +294,18 @@ public class Huffman {
 	
 	public int huffCount(String fileName) throws Exception {
 		//to get bits from Huffman we can read the file and use the dictionary to look up the length of each word encoded
-		File file = new File("speechdata\\" + fileName);
+		File file = new File("lyricdata\\" + fileName);
 		Scanner sc = new Scanner(file);
 		String word = sc.next();
 		int count = 0;
 		
 		while (sc.hasNext()) {
 			word = sc.next();
-			count += encodedHash.get(word).length();
+			try {
+				count += encodedHash.get(word).length();
+			} catch(Exception e) {
+				//System.out.println("word " + word + " caused an error with hash of " + encodedHash.get(word));
+			}
 		}
 		sc.close();
 		
