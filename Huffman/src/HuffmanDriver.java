@@ -3,8 +3,16 @@ public class HuffmanDriver {
 
 	public static void main(String[] args) throws Exception {
 		
-		Huffman metalTest = new Huffman("fileLists/allFilesList.txt", 0, 100);
+		Huffman metalTest = new Huffman("fileLists/metalList.txt", 0, 100);
+		Huffman hairMetal = new Huffman("fileLists/hair_metalList.txt", 0, 100);
+		Huffman speedMetal = new Huffman("fileLists/speed_metalLists.txt", 0, 100);
+		Huffman symphMetal = new Huffman("fileLists/symphonic_metalList.txt", 0, 100);
+		Huffman powerMetal = new Huffman("fileLists/power_metalList.txt", 0, 100);
 		metalTest.makeGraph();
+		hairMetal.makeGraph();
+		speedMetal.makeGraph();
+		symphMetal.makeGraph();
+		powerMetal.makeGraph();
 		/*Huffman Newtest0 = new Huffman("listOfFiles.txt", 601, 602);
 		Huffman Newtest1 = new Huffman("listOfFiles.txt", 600, 602);
 		Huffman Newtest2 = new Huffman("listOfFiles.txt", 592, 602);

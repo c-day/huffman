@@ -144,12 +144,12 @@ public class Huffman {
 			
 			//add data to graph
 			data.getSeries(0).add(genre, ratio);
-			System.out.println("Added data series: KKGenre?:" + genre + " Ratio:" + ratio);
+			System.out.println("Added data series: Genre:" + genre + " Ratio:" + ratio);
 		}
 		sc.close();
 
 		//create scatter plot
-		String chartName = new String("Huffman Ratio using lyrics " + start + " to " + end);
+		String chartName = new String("Huffman Ratio using " + genre);
 		JFreeChart chart = ChartFactory.createScatterPlot(
 		chartName, 					// chart title
 		"Genre", 					// domain axis label
