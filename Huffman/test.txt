@@ -1,0 +1,5 @@
+Hello, I am the President of the United States. This is a text file that will be read in.
+I am a cool guy, and I like to talk about America and stuff. I hope this text file has some
+words that occur more than once. Then I can do some data frequency calculations. Want to
+know why? Cause I am the President, that's why. I wonder how the program will handle commas.
+Who knows, I am sure we will find out. That is the end of the text file. Text file.
